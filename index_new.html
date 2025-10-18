@@ -22,94 +22,133 @@
   </script>
   <style>
     html { scroll-behavior: smooth; }
+    /* Global gold glow overlays */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(194,168,108,0.12), transparent 60%),
+        radial-gradient(1000px 500px at 50% 110%, rgba(194,168,108,0.08), transparent 60%);
+      z-index: 0;
+    }
+    /* Subtle film noise */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.05"/></svg>');
+      background-size: 140px 140px;
+      mix-blend-mode: overlay;
+      z-index: 0;
+    }
+    /* Section gold divider */
+    .gold-divider { position: relative; }
+    .gold-divider::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: 0; height: 1px;
+      background: linear-gradient(90deg, rgba(0,0,0,0), rgba(194,168,108,0.5), rgba(0,0,0,0));
+    }
+    /* Gold-accented glass card */
+    .gold-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(194,168,108,0.25);
+      border-radius: 0.75rem; /* ~rounded-lg */
+      box-shadow: 0 0 40px -20px rgba(194,168,108,0.45);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
   </style>
 </head>
-<body class="font-sans text-gray-200 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a]">
+<body class="font-sans text-gray-200 bg-gradient-to-b from-[#0d1020] via-[#1a1c2c] to-[#0a0b13]">
   <!-- タイトルエリア -->
   <header class="relative w-full overflow-hidden">
     <!-- メインビジュアル -->
     <img src="mein.png" alt="AGAタイトルビジュアル" class="w-full h-auto object-cover" />
     <div class="relative z-10 max-w-3xl px-4">
             <div class="mt-8 flex flex-col md:flex-row gap-4 justify-center">
-        <a href="#reserve" class="px-8 py-3 rounded-full bg-primary text-dark font-semibold hover:opacity-90 transition-opacity">WEB予約はこちら</a>
-        <a href="#contact" class="px-8 py-3 rounded-full bg-green-500 font-semibold hover:opacity-90 transition-opacity">LINEで相談する</a>
+        <a href="https://coubic.com/-shirotsumekusa-/1790415/book/course_type" class="px-8 py-3 rounded-full bg-primary text-dark font-semibold hover:opacity-90 transition-opacity">WEB予約はこちら</a>
+        <a href="https://lin.ee/9qmgOwt" class="px-8 py-3 rounded-full bg-green-500 font-semibold hover:opacity-90 transition-opacity">LINEで相談する</a>
       </div>
     </div>
   </header>
 
   <!-- アピールポイント -->
-  <section class="py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a] text-gray-100" id="appeal">
+  <section class="gold-divider py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a] text-gray-100" id="appeal">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12">アピールポイント</h2>
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">白詰草のこだわり</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="p-8 bg-gray-800 rounded-lg shadow">
+        <div class="p-8 gold-card">
           <h3 class="text-xl font-semibold mb-4">完全個室</h3>
           <p>予約時間はアナタの貸切り。周りの視線が気にならないプライベート空間。</p>
         </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow">
+        <div class="p-8 gold-card">
           <h3 class="text-xl font-semibold mb-4">マンツーマン施術</h3>
-          <p>男性美容師が最初から最後まで1対1で施術。</p>
+          <p>AGAや薄毛の知識が豊富な男性美容師が最初から最後まで1対1で施術。</p>
         </div>
-        <div class="p-8 bg-gray-800 rounded-lg shadow">
+        <div class="p-8 gold-card">
           <h3 class="text-xl font-semibold mb-4">スタイリングレクチャーあり</h3>
           <p>薄毛が目立ちにくいカットはもちろん、スタイリング方法まで丁寧にレクチャー。</p>
         </div>
       </div>
       <!-- 写真エリア -->
       <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <img src="https://picsum.photos/seed/p1/600/400" alt="施術風景1" class="h-56 w-full object-cover rounded-lg" />
-        <img src="https://picsum.photos/seed/p2/601/400" alt="施術風景2" class="h-56 w-full object-cover rounded-lg" />
-        <img src="https://picsum.photos/seed/p3/602/400" alt="施術風景3" class="h-56 w-full object-cover rounded-lg" />
+        <img src="api1.jpg" alt="完全個室" class="h-56 w-full object-cover rounded-lg" />
+        <img src="api2.png" alt="マンツーマン施術" class="h-56 w-full object-cover rounded-lg" />
+        <img src="api3.jpg" alt="スタイリングレクチャー" class="h-56 w-full object-cover rounded-lg" />
       </div>
     </div>
   </section>
 
   <!-- 悩み訴求 -->
-  <section class="py-24 bg-gray-900" id="pain">
+  <section class="gold-divider py-24 bg-gray-900" id="pain">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-2xl md:text-3xl font-semibold mb-12">こんな事、感じていませんか？</h2>
+      <h2 class="text-2xl md:text-3xl font-semibold mb-12 text-primary">こんな事、感じていませんか？</h2>
       <ul class="space-y-6 text-lg">
         <li>「最近、髪が細くなってきた…」</li>
         <li>「オデコが目立つようになってきた…」</li>
         <li>「薄毛が目立たない髪型ってないのかな？」</li>
       </ul>
-      <img src="https://picsum.photos/seed/p4/800/500" alt="悩む男性" class="h-60 w-full object-cover rounded-lg mt-12" />
+      <img src="nayami.jpg" alt="悩む男性" class="h-72 md:h-80 w-full object-contain rounded-lg mt-12 bg-[#1a1c2c]/30" />
     </div>
   </section>
 
   <!-- ダメな行動 -->
-  <section class="py-24 bg-gray-900" id="bad">
+  <section class="gold-divider py-24 bg-gray-900" id="bad">
     <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12">でも…こんな事していませんか？</h2>
-      <div class="bg-gray-800 p-8 rounded-lg">
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">でも…こんな事していませんか？</h2>
+      <div class="gold-card p-8">
         <ul class="list-disc pl-6 space-y-4">
           <li>長さや量をとにかく伸ばしている</li>
           <li>自分で「前髪は長めに」とオーダーしている</li>
           <li>カラーやパーマを完全に避けている</li>
         </ul>
         <p class="mt-6">薄毛を気にするあまり、自分だけで解決策を探す人が多いですが、実はその多くが逆効果です。</p>
-        <p class="mt-4">プロに相談し、正しい方法を知ることで、“薄毛が気にならないスタイル”を創ることができます。</p>
-        <p class="mt-4 font-semibold">白詰草で、あなたに合った最高のスタイルを手に入れませんか？</p>
       </div>
-      <div class="grid grid-cols-2 gap-4 h-60 mt-12"><img src="https://picsum.photos/seed/p6/400/500" alt="Before" class="w-full h-full object-cover rounded-lg" /><img src="https://picsum.photos/seed/p7/401/500" alt="After" class="w-full h-full object-cover rounded-lg" /></div>
+      <img src="ng.png" alt="注意すべき例" class="h-60 w-full object-contain rounded-lg mt-8" />
+      
     </div>
   </section>
 
   <!-- 解決方法 -->
-  <section class="py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a]" id="solution">
+  <section class="gold-divider py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a]" id="solution">
     <div class="max-w-5xl mx-auto px-4 text-center">
-      <h2 class="text-2xl md:text-3xl font-semibold mb-6">お任せください！</h2>
-      <p class="text-lg leading-relaxed max-w-3xl mx-auto">髪が細くなってきても、薄くなってきても「自分らしいカッコいい髪型」は作れます。<br />なぜなら、薄毛を目立たなくするポイントは“髪の量ではなくスタイルの作り方”だからです。</p>
-      <img src="https://picsum.photos/seed/p5/801/500" alt="自信を取り戻した男性" class="h-60 w-full object-cover rounded-lg mt-12" />
+      <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-primary">お任せください！</h2>
+      <p class="text-lg leading-relaxed max-w-3xl mx-auto">プロに相談し、正しい方法を知ることで、“薄毛が気にならないスタイル”を創ることはできるんです。</p>
+      <p class="text-lg leading-relaxed max-w-3xl mx-auto mt-4">髪が細くなってきても、薄くなってきても「自分らしいカッコいい髪型」は作れます！<br />なぜなら、薄毛を目立たなくするポイントは“髪の量ではなくスタイルの作り方”だからです。<br />白詰草で、あなたに合った最高のスタイルを手に入れませんか？</p>
+      <img id="yorokobi" src="yorokobi.jpg" alt="喜ぶ男性のイメージ" class="h-72 md:h-80 w-full object-cover rounded-lg mt-8 mx-auto" />
     </div>
   </section>
 
   <!-- スタイリスト紹介 -->
-  <section class="py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a]" id="stylist">
+  <section class="gold-divider py-24 bg-[#0f1424]" id="stylist">
     <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12">スタイリスト紹介</h2>
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">スタイリスト紹介</h2>
       <div class="md:flex items-start gap-8">
-        <img src="https://picsum.photos/seed/p8/300/300" alt="スタイリスト" class="flex-shrink-0 h-60 w-60 object-cover rounded-lg" />
+        <img src="api2.png" alt="スタイリスト" class="flex-shrink-0 h-60 w-60 object-cover rounded-lg" />
         <div class="mt-8 md:mt-0 text-gray-200 space-y-2">
           <h3 class="text-xl font-bold">オーナースタイリスト　矢山 稔宗（ややま としむね）</h3>
           <p>白詰草_美容室_津山市 / 1987/02/10 生まれ</p>
@@ -117,58 +156,81 @@
           <p>苦手：虫・方向音痴</p>
           <p>スポーツ歴：野球・サッカー・バスケ・ラグビー</p>
           <p>資格：美容師免許／管理美容師免許／書道5段／FP2級</p>
-          <p class="pt-4">こんにちは、白詰草の矢山です。髪型は見た目を良くするだけでなく、「自信」や「モチベーション」まで高めてくれる大切な要素だと思っています。薄毛で悩んでいる人ほど、諦めずに一歩踏み出してほしい。その勇気を全力で受け止め、あなたに合ったスタイルを一緒に作っていきます。</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ご挨拶 -->
+  <section class="gold-divider py-20 bg-gradient-to-b from-[#0f1424] via-[#0f1424] to-[#0b0f1e] text-gray-200" id="greeting">
+    <div class="max-w-4xl mx-auto px-4 space-y-6">
+      <h2 class="text-2xl md:text-3xl font-semibold text-primary">ご挨拶</h2>
+      <p>こんにちは<br />白詰草のホームページをご覧頂きありがとうございます。<br />白詰草の矢山です。</p>
+      <p>僕の中で髪型は人からの印象を良くしてくれるのはもちろん、<br />自分のモチベーションや自信を高めて<br />人生を豊かにしていく１つの要因だと考えています。</p>
+      <p>髪型が変われば自信が付き、<br />顔付きや姿勢もキリッとして内面までもカッコよくなっていく、<br />髪型にはそんな力があると思うんです。</p>
+      <p>だから、薄毛で諦めている人は<br />本当に勿体ない事をしているんです！</p>
+      <p>今、アナタがコレを読んでいるのも何かのご縁です。</p>
+      <p>最初の一歩は勇気がいると思いますが、<br />勇気を出してご来店（ご予約）頂ければ<br />全力でアナタの状態に合う素敵なスタイルにしていきますので<br />是非ご来店お待ちしております！</p>
+    </div>
+  </section>
+
   <!-- 来店の流れ -->
-  <section class="py-24 bg-gray-900" id="flow">
+  <section class="gold-divider py-24 bg-gray-900" id="flow">
     <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12">来店からの流れ</h2>
-      <div class="space-y-12">
-        <!-- Step Template -->
-        <div class="md:flex gap-8 items-center">
-          <img src="https://picsum.photos/seed/p9/600/350" alt="受付風景" class="md:w-1/2 h-52 object-cover rounded-lg" />
-          <div class="mt-6 md:mt-0 md:w-1/2">
-            <h3 class="text-xl font-semibold mb-2">1️⃣ 受付け</h3>
-            <p>2階の入口からご来店。荷物をお預かりし、カウンセリングシートを記入。</p>
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">来店からの流れ</h2>
+      <div class="space-y-10">
+        <!-- Step 1 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">① 受付け</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">美容院の入り口は階段を上がって頂き2階になります。ご来店頂きましたら荷物をお預かりして、カウンセリングシートをご記入頂きます。完全予約制ですのでお待たせする事もございません。</p>
           </div>
         </div>
-        <div class="md:flex gap-8 items-center md:flex-row-reverse">
-          <img src="https://picsum.photos/seed/p10/601/350" alt="カウンセリング" class="md:w-1/2 h-52 object-cover rounded-lg" />
-          <div class="mt-6 md:mt-0 md:w-1/2">
-            <h3 class="text-xl font-semibold mb-2">2️⃣ カウンセリング</h3>
-            <p>悩みや希望を丁寧にヒアリングし、骨格・服装・ライフスタイルに合う提案。</p>
+        <!-- Step 2 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">② カウンセリング</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">ご記入頂いたカウンセリングシートを元に丁寧にカウンセリングさせて頂きます。アナタの悩みや希望をしっかりとお伺いして今の髪の状態や骨格、お顔や服装、ライフスタイルなどに合わせたスタイルをご提案します。</p>
           </div>
         </div>
-        <div class="md:flex gap-8 items-center">
-          <img src="https://picsum.photos/seed/p11/602/350" alt="施術" class="md:w-1/2 h-52 object-cover rounded-lg" />
-          <div class="mt-6 md:mt-0 md:w-1/2">
-            <h3 class="text-xl font-semibold mb-2">3️⃣ 施術＆ヘッドスパ</h3>
-            <p>擦らないヘッドスパで頭皮環境を整えながら、再現性の高いスタイルを創ります。</p>
+        <!-- Step 3 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">③ 施術＆ヘッドスパ</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">状態に合わせた適切な施術をする事で再現性の高いアナタに合ったスタイルを創っていきます。施術後は健康な髪を生やしていく為には土台になる頭皮環境を整える為に擦るシャンプーではなくヘッドスパをしながら頭皮を整えていきます。</p>
           </div>
         </div>
-        <div class="md:flex gap-8 items-center md:flex-row-reverse">
-          <img src="https://picsum.photos/seed/p12/603/350" alt="スタイリングレクチャー" class="md:w-1/2 h-52 object-cover rounded-lg" />
-          <div class="mt-6 md:mt-0 md:w-1/2">
-            <h3 class="text-xl font-semibold mb-2">4️⃣ スタイリングレクチャー</h3>
-            <p>スタイリング動画を撮って後で送ることも可能。</p>
+        <!-- Step 4 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">④ スタイリングレクチャー</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">スタイリングをしながらしっかりとやり方を説明していき、ご希望の方は説明している所を動画で撮り後で送らせて頂く事も可能です。</p>
           </div>
         </div>
-        <div class="md:flex gap-8 items-center">
-          <img src="https://picsum.photos/seed/p13/604/350" alt="お会計" class="md:w-1/2 h-52 object-cover rounded-lg" />
-          <div class="mt-6 md:mt-0 md:w-1/2">
-            <h3 class="text-xl font-semibold mb-2">5️⃣ お会計＆次回予約</h3>
-            <p>次回予約のご案内もその場で可能です。</p>
+        <!-- Step 5 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">⑤ お会計＆次回予約</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">お会計とご希望の場合は次のご予約（次回予約）をお取り頂く事も可能です。</p>
           </div>
         </div>
-        <div class="md:flex gap-8 items-center md:flex-row-reverse">
-          <img src="https://picsum.photos/seed/p14/605/350" alt="アフターフォロー" class="md:w-1/2 h-52 object-cover rounded-lg" />
-          <div class="mt-6 md:mt-0 md:w-1/2">
-            <h3 class="text-xl font-semibold mb-2">6️⃣ 1ヵ月後のアフターフォロー</h3>
-            <p>希望者には無料で再チェック＆アドバイスを行います。</p>
+        <!-- Step 6 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">⑥ 1ヵ月後のアフターフォロー</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">強制ではないですが、1ヵ月後に状態を確認させて頂き、乾かし方やスタイリングを実際にやってもらい改善できる所があればお伝えさせて頂きます。</p>
           </div>
         </div>
       </div>
@@ -176,9 +238,9 @@
   </section>
 
   <!-- メニュー紹介 -->
-  <section class="py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a]" id="menu">
+  <section class="gold-divider py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a]" id="menu">
     <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12">メニュー</h2>
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">メニュー</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-100">
         <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
           <h3 class="text-lg font-semibold mb-4">カット</h3>
@@ -208,27 +270,34 @@
           <h3 class="text-lg font-semibold mb-4">ポイントパーマ＆カット</h3>
           <p>¥14,300〜（税込）</p>
         </div>
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg flex items-center justify-center">
+          <p class="text-sm text-gray-200">※その他のメニューはお問い合わせ下さい。</p>
+        </div>
       </div>
-      <img src="https://picsum.photos/seed/p15/800/400" alt="メニューイメージ" class="h-52 w-full object-cover rounded-lg mt-12" />
+      <img src="menyu.jpg" alt="メニューイメージ" class="h-52 w-full object-cover rounded-lg mt-12" />
     </div>
   </section>
 
   <!-- 病院紹介 -->
-  <section class="py-24 bg-gray-900" id="clinic">
+  <section class="gold-divider py-24 bg-gray-900" id="clinic">
     <div class="max-w-5xl mx-auto px-4 text-center">
-      <h2 class="text-2xl md:text-3xl font-semibold mb-6">AGA治療の紹介</h2>
-      <p class="max-w-3xl mx-auto leading-relaxed">AGA治療ができる信頼できる病院をご紹介できます。僕自身が直接話を聞いて信頼できた“医療として真摯に向き合う病院”と提携しています。薬代も良心的で、減薬・断薬も視野に入れた治療方針です。スタイル提案と並行して相談も可能です。お気軽にご相談ください（LINEでもOK）。</p>
-      <img src="https://picsum.photos/seed/p16/800/500" alt="病院紹介" class="h-60 w-full object-cover rounded-lg mt-12" />
+      <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-primary">AGA治療ができる津山の病院を紹介できます</h2>
+      <div class="max-w-3xl mx-auto text-left space-y-6 leading-relaxed text-gray-200 gold-card p-8">
+        <p>悲しい事ですが現在AGA（薄毛）をビジネスチャンスとして捉えている病院が増えてきています。<br />「薬を飲み続ける」「毎月通わないといけない」「治療をやめたら元に戻る」などと病院を間違えると毎月高額な費用がかかる事もあります。<br />それに本来は治療をしていきながら生活習慣や食生活を改善していけば減薬や断薬も可能なはずなのですが、通い続けてもらった方が儲かるからという理由でそこを伝えない病院も多いのが現状です。</p>
+        <p>そこで僕が個人的にAGA治療をしている病院の先生に話を聞きAGAをビジネスではなく医療として考えている信頼できる病院見つける事ができました。<br />その病院では薬の料金も良心的で減薬、断薬も視野に入れて相談にのってくれる病院です。<br />その病院と先生を紹介できますのでAGA治療も視野に入れながらカットなどのスタイル創りや扱い方と並行して改善していきたい方はお気軽にご相談下さい。</p>
+        <p>AGA治療のやり方や費用、長期的な視点での進め方などもアナタの状態やライフステージに合ったお話もさせて頂けると思います。<br />他にも分からない事や聞きたい事、不安なことがあればお問い合わせください。<br />LINEなどが苦手な方は電話でも全然大丈夫ですのでお気軽にお問い合わせ下さいね。</p>
+      </div>
     </div>
   </section>
 
   <!-- 予約・問い合わせ・カットモデル募集 -->
-  <section class="py-24 bg-primary text-dark" id="reserve">
+  <section class="gold-divider py-24 bg-primary text-dark" id="reserve">
     <div class="max-w-3xl mx-auto px-4 text-center space-y-8">
-      <h2 class="text-2xl md:text-3xl font-semibold">予約・問い合わせ・カットモデル募集</h2>
-      <a href="#" class="block w-full px-8 py-4 rounded-full bg-dark text-primary font-semibold hover:opacity-90 transition-opacity">WEB予約はこちら</a>
-      <a href="#" class="block w-full px-8 py-4 rounded-full bg-green-500 text-white font-semibold hover:opacity-90 transition-opacity">LINEで相談する</a>
-      <a href="#" class="block w-full px-8 py-4 rounded-full border-2 border-dark text-dark font-semibold hover:bg-dark hover:text-primary transition-colors">カットモデル募集はこちら</a>
+      <h2 class="text-2xl md:text-3xl font-semibold text-primary">予約・問い合わせ・カットモデル募集</h2>
+      <a href="https://coubic.com/-shirotsumekusa-/1790415/book/course_type" class="block w-full px-8 py-4 rounded-full bg-dark text-primary font-semibold hover:opacity-90 transition-opacity">WEB予約はこちら</a>
+      <a href="https://lin.ee/9qmgOwt" class="block w-full px-8 py-4 rounded-full bg-green-500 text-white font-semibold hover:opacity-90 transition-opacity">LINEで相談する</a>
+      <a href="https://lin.ee/9qmgOwt" class="block w-full px-8 py-4 rounded-full border-2 border-dark text-dark font-semibold hover:bg-dark hover:text-primary transition-colors">カットモデル募集はこちら</a>
+      <p class="text-xs text-dark/80">※カットモデルは写真を添付してLINEでお問い合わせ下さい</p>
     </div>
   </section>
 
@@ -240,7 +309,7 @@
         <p>〒708-0034 岡山県津山市船頭町104-1<br />営業時間：9:00〜17:00<br />定休日：月曜日 ・第1.3.5日曜日<br />TEL：0868-24-3276</p>
         <p class="mt-2">LINE・WEB予約は24時間受付中</p>
       </div>
-      <img src="https://picsum.photos/seed/p17/900/300" alt="サロン外観" class="md:col-span-2 h-40 w-full object-cover rounded-lg" />
+      <img src="gaikann.JPG" alt="サロン外観" class="md:col-span-2 h-56 md:h-64 w-full object-contain rounded-lg bg-[#1a1c2c]/30" />
     </div>
     <p class="mt-8 text-center text-xs">© 2025 白詰草</p>
   </footer>
