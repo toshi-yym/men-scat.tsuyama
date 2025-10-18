@@ -3,212 +3,391 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>白詰草｜AGA・薄毛ケア</title>
-  <!-- Tailwind CSS -->
+  <title>白詰草｜メンズ薄毛・AGA専門サロン</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: {
-              DEFAULT: '#bfa46f', // ゴールド
-            },
-            dark: '#0f0f0f',
+            primary: '#c2a86c', // ゴールド
+            dark: '#0e0f1a', // ネイビーに近い黒
           },
           fontFamily: {
-            sans: ['Noto Sans JP', 'Roboto', 'sans-serif'],
+            sans: ['Noto Sans JP', 'sans-serif'],
           },
         },
       },
     };
   </script>
-  <!-- AOS (Animate On Scroll) -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <style>
-    html {
-      scroll-behavior: smooth;
+    html { scroll-behavior: smooth; }
+    /* Global gold glow overlays */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(194,168,108,0.12), transparent 60%),
+        radial-gradient(1000px 500px at 50% 110%, rgba(194,168,108,0.08), transparent 60%);
+      z-index: 0;
     }
+    /* Subtle film noise */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.05"/></svg>');
+      background-size: 140px 140px;
+      mix-blend-mode: overlay;
+      z-index: 0;
+    }
+    /* Section gold divider */
+    .gold-divider { position: relative; }
+    .gold-divider::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: 0; height: 1px;
+      background: linear-gradient(90deg, rgba(0,0,0,0), rgba(194,168,108,0.5), rgba(0,0,0,0));
+    }
+    /* Gold-accented glass card */
+    .gold-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(194,168,108,0.25);
+      border-radius: 0.75rem; /* ~rounded-lg */
+      box-shadow: 0 0 40px -20px rgba(194,168,108,0.45);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
+    .light-attract { position: relative; overflow: hidden; }
+    .light-attract::after {
+      content: "";
+      position: absolute;
+      inset: -10%;
+      background: radial-gradient(420px 300px at 50% 50%, rgba(194,168,108,0.16), rgba(194,168,108,0.08) 40%, transparent 72%);
+      filter: blur(22px);
+      opacity: 0;
+      transition: opacity 1000ms ease;
+      pointer-events: none;
+    }
+    .light-attract.lit::after { opacity: 0.6; }
+    .spark {
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 9999px;
+      background: rgba(194,168,108,0.75);
+      box-shadow: 0 0 10px rgba(194,168,108,0.75), 0 0 20px rgba(194,168,108,0.35);
+      will-change: transform, opacity, left, top;
+      opacity: 0.85;
+      transition: left 1800ms cubic-bezier(.18,.6,.08,.98), top 1800ms cubic-bezier(.18,.6,.08,.98), opacity 1200ms ease, transform 1200ms ease;
+    }
+    .spark.fade { opacity: 0; transform: scale(0.6); }
   </style>
 </head>
-<body class="bg-white text-gray-100 font-sans leading-relaxed">
-  <!-- Fixed Action Buttons -->
-  <div class="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
-    <a href="#" class="w-14 h-14 rounded-full bg-primary shadow-lg flex items-center justify-center hover:scale-105 transition-transform" aria-label="WEB予約">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-    </a>
-    <a href="#" class="w-14 h-14 rounded-full bg-green-500 shadow-lg flex items-center justify-center hover:scale-105 transition-transform" aria-label="LINE相談">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 32" class="h-6 w-6 fill-white">
-        <path d="M18.004.006C8.15.006.008 6.618.008 14.772c0 4.63 2.776 8.71 7.029 11.34-.296 1.08-1.701 6.143-1.829 6.71 0 0-.035.296.148.409.184.112.408.074.408.074.538-.076 6.22-4.072 7.17-4.739 1.785.262 3.616.396 5.57.396 9.854 0 17.996-6.612 17.996-14.766C36 .006 27.858.006 18.004.006z" />
-      </svg>
-    </a>
-  </div>
-
-  <!-- ヒーローセクション -->
-  <section class="relative min-h-screen flex items-center justify-center text-center bg-dark">
-    <img src="https://source.unsplash.com/random/1600x900?man,profile" alt="男性シルエット" class="absolute inset-0 w-full h-full object-cover opacity-40" />
-    <div class="relative z-10 px-4">
-      <h1 class="text-3xl md:text-5xl font-bold tracking-wide" data-aos="fade-up">薄毛・AGAの悩み、もっとスタイリッシュに解決を。</h1>
-      <p class="mt-4 md:mt-6 text-lg md:text-xl text-gray-300" data-aos="fade-up" data-aos-delay="150">美容師だからこそできる、自然でスマートなヘアケア提案。</p>
-      <div class="mt-8 flex gap-4 justify-center" data-aos="fade-up" data-aos-delay="300">
-        <a href="#reserve" class="px-6 py-3 rounded-full bg-primary text-white font-semibold hover:opacity-90 transition-opacity">WEB予約</a>
-        <a href="#line" class="px-6 py-3 rounded-full border border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-colors">LINEで相談</a>
-      </div>
-      <div class="absolute bottom-10 left-1/2 -translate-x-1/2" data-aos="fade-up" data-aos-delay="500">
-        <a href="#troubles" class="flex flex-col items-center group">
-          <span class="text-sm text-gray-300 mb-1">Scroll</span>
-          <span class="w-6 h-6 border-b-2 border-r-2 border-gray-300 transform rotate-45 animate-bounce"></span>
-        </a>
+<body class="font-sans text-gray-200 bg-gradient-to-b from-[#0d1020] via-[#1a1c2c] to-[#0a0b13]">
+  <!-- タイトルエリア -->
+  <header class="relative w-full overflow-hidden">
+    <!-- メインビジュアル -->
+    <img src="mein.png" alt="AGAタイトルビジュアル" class="w-full h-auto object-cover" />
+    <div class="relative z-10 max-w-3xl px-4">
+            <div class="mt-8 flex flex-col md:flex-row gap-4 justify-center">
+        <a href="https://coubic.com/-shirotsumekusa-/1790415/book/course_type" class="px-8 py-3 rounded-full bg-primary text-dark font-semibold hover:opacity-90 transition-opacity">WEB予約はこちら</a>
+        <a href="https://lin.ee/9qmgOwt" class="px-8 py-3 rounded-full bg-green-500 font-semibold hover:opacity-90 transition-opacity">LINEで相談する</a>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- 共感・悩みセクション -->
-  <section id="troubles" class="py-20 bg-dark text-white" data-aos="fade-up">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-2xl md:text-3xl font-semibold mb-12">こんなお悩みはありませんか？</h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="flex flex-col items-center gap-4 p-6 bg-gray-800 rounded-lg">
-          <img src="https://source.unsplash.com/random/80x80?hair" alt="悩みアイコン" class="w-20 h-20 object-cover rounded-full" />
-          <p>ボリュームが減ってきた</p>
-        </div>
-        <div class="flex flex-col items-center gap-4 p-6 bg-gray-800 rounded-lg">
-          <img src="https://source.unsplash.com/random/81x81?hairline" alt="悩みアイコン" class="w-20 h-20 object-cover rounded-full" />
-          <p>分け目が目立つ</p>
-        </div>
-        <div class="flex flex-col items-center gap-4 p-6 bg-gray-800 rounded-lg">
-          <img src="https://source.unsplash.com/random/82x82?scalp" alt="悩みアイコン" class="w-20 h-20 object-cover rounded-full" />
-          <p>頭皮が透けて見える</p>
-        </div>
-        <div class="flex flex-col items-center gap-4 p-6 bg-gray-800 rounded-lg">
-          <img src="https://source.unsplash.com/random/83x83?stress" alt="悩みアイコン" class="w-20 h-20 object-cover rounded-full" />
-          <p>ケア方法がわからない</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 当店の特徴セクション -->
-  <section class="py-24 bg-white text-gray-800" data-aos="fade-up">
-    <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12">白詰草の特徴</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="group relative bg-gray-100 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
-          <img src="https://source.unsplash.com/random/400x300?haircut" alt="自然な仕上がり" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity" />
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">自然な仕上がり</h3>
-            <p class="text-sm text-gray-600">専門技術で自毛を活かし、違和感のないヘアスタイルを実現。</p>
-          </div>
-        </div>
-        <div class="group relative bg-gray-100 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
-          <img src="https://source.unsplash.com/random/400x300?barber" alt="専門知識を持つ美容師" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity" />
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">専門知識を持つ美容師</h3>
-            <p class="text-sm text-gray-600">AGAや薄毛に関する知識を持った美容師がマンツーマンで対応。</p>
-          </div>
-        </div>
-        <div class="group relative bg-gray-100 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
-          <img src="https://source.unsplash.com/random/400x300?relax" alt="気軽に相談できる環境" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity" />
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">気軽に相談できる環境</h3>
-            <p class="text-sm text-gray-600">プライベート空間で周りを気にせずじっくり相談。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- カットモデル募集セクション -->
-  <section class="py-24 bg-gradient-to-r from-primary via-yellow-600 to-primary text-white" data-aos="fade-up">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-2xl md:text-3xl font-semibold mb-6">カットモデル募集中（写真付きでLINEからご応募ください）</h2>
-      <p class="mb-8">スタイル撮影や技術向上のため、男性カットモデルを募集しています。髪型や撮影内容はご希望に合わせてご相談可能です。興味のある方は、写真を添えてLINEよりご連絡ください。</p>
-      <a href="#line" class="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-dark text-white font-semibold hover:opacity-90 transition-opacity">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 32" class="h-6 w-6 fill-white">
-          <path d="M18.004.006C8.15.006.008 6.618.008 14.772c0 4.63 2.776 8.71 7.029 11.34-.296 1.08-1.701 6.143-1.829 6.71 0 0-.035.296.148.409.184.112.408.074.408.074.538-.076 6.22-4.072 7.17-4.739 1.785.262 3.616.396 5.57.396 9.854 0 17.996-6.612 17.996-14.766C36 .006 27.858.006 18.004.006z" />
-        </svg>
-        LINEで応募する
-      </a>
-    </div>
-  </section>
-
-  <!-- ビフォーアフター & お客様の声 -->
-  <section class="py-24 bg-gray-50 text-gray-800" data-aos="fade-up">
+  <!-- アピールポイント -->
+  <section class="gold-divider py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a] text-gray-100 light-attract" id="appeal">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12">ビフォーアフター & お客様の声</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <!-- ビフォーアフター -->
-        <div class="space-y-6">
-          <div class="grid grid-cols-2 gap-4">
-            <img src="https://source.unsplash.com/random/300x300?before" alt="Before" class="rounded-lg object-cover" />
-            <img src="https://source.unsplash.com/random/300x300?after" alt="After" class="rounded-lg object-cover" />
-          </div>
-          <p class="text-sm text-gray-600">※写真はイメージです。実際の仕上がりには個人差があります。</p>
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">白詰草のこだわり</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 gold-card">
+          <h3 class="text-xl font-semibold mb-4">完全個室</h3>
+          <p>予約時間はアナタの貸切り。周りの視線が気にならないプライベート空間。</p>
         </div>
-        <!-- 口コミ -->
-        <div class="space-y-6">
-          <div class="p-6 bg-white rounded-lg shadow">
-            <p class="text-sm mb-4">「初めてのAGA相談でしたが、美容師さんが親身に話を聞いてくれて安心できました。」</p>
-            <span class="text-xs text-gray-500">— 30代 男性</span>
+        <div class="p-8 gold-card">
+          <h3 class="text-xl font-semibold mb-4">マンツーマン施術</h3>
+          <p>AGAや薄毛の知識が豊富な男性美容師が最初から最後まで1対1で施術。</p>
+        </div>
+        <div class="p-8 gold-card">
+          <h3 class="text-xl font-semibold mb-4">スタイリングレクチャーあり</h3>
+          <p>薄毛が目立ちにくいカットはもちろん、スタイリング方法まで丁寧にレクチャー。</p>
+        </div>
+      </div>
+      <!-- 写真エリア -->
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <img src="api1.jpg" alt="完全個室" class="h-56 w-full object-cover rounded-lg" />
+        <img src="api2.png" alt="マンツーマン施術" class="h-56 w-full object-cover rounded-lg" />
+        <img src="api3.jpg" alt="スタイリングレクチャー" class="h-56 w-full object-cover rounded-lg" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 悩み訴求 -->
+  <section class="gold-divider py-24 bg-gray-900 light-attract" id="pain">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-12 text-primary">こんな事、感じていませんか？</h2>
+      <ul class="space-y-6 text-lg">
+        <li>「最近、髪が細くなってきた…」</li>
+        <li>「オデコが目立つようになってきた…」</li>
+        <li>「薄毛が目立たない髪型ってないのかな？」</li>
+      </ul>
+      <img src="nayami.jpg" alt="悩む男性" class="h-72 md:h-80 w-full object-contain rounded-lg mt-12 bg-[#1a1c2c]/30" />
+    </div>
+  </section>
+
+  <!-- ダメな行動 -->
+  <section class="gold-divider py-24 bg-gray-900 light-attract" id="bad">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">でも…こんな事していませんか？</h2>
+      <div class="gold-card p-8">
+        <ul class="list-disc pl-6 space-y-4">
+          <li>長さや量をとにかく伸ばしている</li>
+          <li>自分で「前髪は長めに」とオーダーしている</li>
+          <li>カラーやパーマを完全に避けている</li>
+        </ul>
+        <p class="mt-6">薄毛を気にするあまり、自分だけで解決策を探す人が多いですが、実はその多くが逆効果です。</p>
+      </div>
+      <img src="ng.png" alt="注意すべき例" class="h-60 w-full object-contain rounded-lg mt-8" />
+      
+    </div>
+  </section>
+
+  <!-- 解決方法 -->
+  <section class="gold-divider py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a] light-attract" id="solution">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-primary">お任せください！</h2>
+      <p class="text-lg leading-relaxed max-w-3xl mx-auto">プロに相談し、正しい方法を知ることで、“薄毛が気にならないスタイル”を創ることはできるんです。</p>
+      <p class="text-lg leading-relaxed max-w-3xl mx-auto mt-4">髪が細くなってきても、薄くなってきても「自分らしいカッコいい髪型」は作れます！<br />なぜなら、薄毛を目立たなくするポイントは“髪の量ではなくスタイルの作り方”だからです。<br />白詰草で、あなたに合った最高のスタイルを手に入れませんか？</p>
+      <img id="yorokobi" src="yorokobi.jpg" alt="喜ぶ男性のイメージ" class="h-72 md:h-80 w-full object-cover rounded-lg mt-8 mx-auto" />
+    </div>
+  </section>
+
+  <!-- スタイリスト紹介 -->
+  <section class="gold-divider py-24 bg-[#0f1424] light-attract" id="stylist">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">スタイリスト紹介</h2>
+      <div class="md:flex items-start gap-8">
+        <img src="api2.png" alt="スタイリスト" class="flex-shrink-0 h-60 w-60 object-cover rounded-lg" />
+        <div class="mt-8 md:mt-0 text-gray-200 space-y-2">
+          <h3 class="text-xl font-bold">オーナースタイリスト　矢山 稔宗（ややま としむね）</h3>
+          <p>白詰草_美容室_津山市 / 1987/02/10 生まれ</p>
+          <p>好き：漫画（ワンピース）、ゲーム（息子とモンハン）、ワイン、旅行</p>
+          <p>苦手：虫・方向音痴</p>
+          <p>スポーツ歴：野球・サッカー・バスケ・ラグビー</p>
+          <p>資格：美容師免許／管理美容師免許／書道5段／FP2級</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ご挨拶 -->
+  <section class="gold-divider py-20 bg-gradient-to-b from-[#0f1424] via-[#0f1424] to-[#0b0f1e] text-gray-200 light-attract" id="greeting">
+    <div class="max-w-4xl mx-auto px-4 space-y-6 text-center">
+      <h2 class="text-2xl md:text-3xl font-semibold text-primary">ご挨拶</h2>
+      <p>こんにちは<br />白詰草のホームページをご覧頂きありがとうございます。<br />白詰草の矢山です。</p>
+      <p>僕の中で髪型は人からの印象を良くしてくれるのはもちろん、<br />自分のモチベーションや自信を高めて<br />人生を豊かにしていく１つの要因だと考えています。</p>
+      <p>髪型が変われば自信が付き、<br />顔付きや姿勢もキリッとして内面までもカッコよくなっていく、<br />髪型にはそんな力があると思うんです。</p>
+      <p>だから、薄毛で諦めている人は<br />本当に勿体ない事をしているんです！</p>
+      <p>今、アナタがコレを読んでいるのも何かのご縁です。</p>
+      <p>最初の一歩は勇気がいると思いますが、<br />勇気を出してご来店（ご予約）頂ければ<br />全力でアナタの状態に合う素敵なスタイルにしていきますので<br />是非ご来店お待ちしております！</p>
+    </div>
+  </section>
+
+  <!-- 来店の流れ -->
+  <section class="gold-divider py-24 bg-gray-900 light-attract" id="flow">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">来店からの流れ</h2>
+      <div class="space-y-10">
+        <!-- Step 1 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">① 受付け</div>
           </div>
-          <div class="p-6 bg-white rounded-lg shadow">
-            <p class="text-sm mb-4">「自然な仕上がりで周りに気づかれず、自分に自信が持てるようになりました！」</p>
-            <span class="text-xs text-gray-500">— 40代 男性</span>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">美容院の入り口は階段を上がって頂き2階になります。ご来店頂きましたら荷物をお預かりして、カウンセリングシートをご記入頂きます。完全予約制ですのでお待たせする事もございません。</p>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">② カウンセリング</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">ご記入頂いたカウンセリングシートを元に丁寧にカウンセリングさせて頂きます。アナタの悩みや希望をしっかりとお伺いして今の髪の状態や骨格、お顔や服装、ライフスタイルなどに合わせたスタイルをご提案します。</p>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">③ 施術＆ヘッドスパ</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">状態に合わせた適切な施術をする事で再現性の高いアナタに合ったスタイルを創っていきます。施術後は健康な髪を生やしていく為には土台になる頭皮環境を整える為に擦るシャンプーではなくヘッドスパをしながら頭皮を整えていきます。</p>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">④ スタイリングレクチャー</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">スタイリングをしながらしっかりとやり方を説明していき、ご希望の方は説明している所を動画で撮り後で送らせて頂く事も可能です。</p>
+          </div>
+        </div>
+        <!-- Step 5 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">⑤ お会計＆次回予約</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">お会計とご希望の場合は次のご予約（次回予約）をお取り頂く事も可能です。</p>
+          </div>
+        </div>
+        <!-- Step 6 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+          <div class="md:col-span-4">
+            <div class="text-2xl md:text-3xl font-bold text-primary">⑥ 1ヵ月後のアフターフォロー</div>
+          </div>
+          <div class="md:col-span-8">
+            <p class="text-sm md:text-base text-gray-300">強制ではないですが、1ヵ月後に状態を確認させて頂き、乾かし方やスタイリングを実際にやってもらい改善できる所があればお伝えさせて頂きます。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 予約・相談セクション -->
-  <section id="reserve" class="py-24 bg-gradient-to-r from-dark via-gray-800 to-dark text-white" data-aos="fade-up">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-2xl md:text-3xl font-semibold mb-8">ご予約・ご相談はこちらから</h2>
-      <div class="flex flex-col md:flex-row justify-center gap-6">
-        <a href="#" class="flex-1 px-8 py-4 rounded-full bg-primary text-dark font-semibold hover:opacity-90 transition-opacity">WEB予約はこちら</a>
-        <a href="#line" class="flex-1 px-8 py-4 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-dark transition-colors">LINEで相談</a>
+  <!-- メニュー紹介 -->
+  <section class="gold-divider py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a] light-attract" id="menu">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">メニュー</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-100">
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+          <h3 class="text-lg font-semibold mb-4">カット</h3>
+          <p>¥6,600（税込）</p>
+        </div>
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+          <h3 class="text-lg font-semibold mb-4">ヘッドスパ（15分）</h3>
+          <p>+¥1,650（税込）</p>
+        </div>
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+          <h3 class="text-lg font-semibold mb-4">育毛スパ（15分）</h3>
+          <p>+¥2,200（税込）</p>
+        </div>
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+          <h3 class="text-lg font-semibold mb-4">ヘッドスパ（30分）</h3>
+          <p>+¥3,300（税込）</p>
+        </div>
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+          <h3 class="text-lg font-semibold mb-4">カラー＆メンズカット</h3>
+          <p>¥13,200（税込）</p>
+        </div>
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+          <h3 class="text-lg font-semibold mb-4">パーマ＆カット</h3>
+          <p>¥17,600（税込）</p>
+        </div>
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+          <h3 class="text-lg font-semibold mb-4">ポイントパーマ＆カット</h3>
+          <p>¥14,300〜（税込）</p>
+        </div>
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg flex items-center justify-center">
+          <p class="text-sm text-gray-200">※その他のメニューはお問い合わせ下さい。</p>
+        </div>
       </div>
-      <p class="mt-6 text-sm text-gray-400">些細な悩みでもお気軽にご相談ください。</p>
+      <img src="menyu.jpg" alt="メニューイメージ" class="h-52 w-full object-cover rounded-lg mt-12" />
+    </div>
+  </section>
+
+  <!-- 病院紹介 -->
+  <section class="gold-divider py-24 bg-gray-900 light-attract" id="clinic">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-primary">AGA治療ができる津山の病院を紹介できます</h2>
+      <div class="max-w-3xl mx-auto text-left space-y-6 leading-relaxed text-gray-200 gold-card p-8">
+        <p>悲しい事ですが現在AGA（薄毛）をビジネスチャンスとして捉えている病院が増えてきています。<br />「薬を飲み続ける」「毎月通わないといけない」「治療をやめたら元に戻る」などと病院を間違えると毎月高額な費用がかかる事もあります。<br />それに本来は治療をしていきながら生活習慣や食生活を改善していけば減薬や断薬も可能なはずなのですが、通い続けてもらった方が儲かるからという理由でそこを伝えない病院も多いのが現状です。</p>
+        <p>そこで僕が個人的にAGA治療をしている病院の先生に話を聞きAGAをビジネスではなく医療として考えている信頼できる病院見つける事ができました。<br />その病院では薬の料金も良心的で減薬、断薬も視野に入れて相談にのってくれる病院です。<br />その病院と先生を紹介できますのでAGA治療も視野に入れながらカットなどのスタイル創りや扱い方と並行して改善していきたい方はお気軽にご相談下さい。</p>
+        <p>AGA治療のやり方や費用、長期的な視点での進め方などもアナタの状態やライフステージに合ったお話もさせて頂けると思います。<br />他にも分からない事や聞きたい事、不安なことがあればお問い合わせください。<br />LINEなどが苦手な方は電話でも全然大丈夫ですのでお気軽にお問い合わせ下さいね。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 予約・問い合わせ・カットモデル募集 -->
+  <section class="gold-divider py-24 bg-primary text-dark light-attract" id="reserve">
+    <div class="max-w-3xl mx-auto px-4 text-center space-y-8">
+      <h2 class="text-2xl md:text-3xl font-semibold text-primary">予約・問い合わせ・カットモデル募集</h2>
+      <a href="https://coubic.com/-shirotsumekusa-/1790415/book/course_type" class="block w-full px-8 py-4 rounded-full bg-dark text-primary font-semibold hover:opacity-90 transition-opacity">WEB予約はこちら</a>
+      <a href="https://lin.ee/9qmgOwt" class="block w-full px-8 py-4 rounded-full bg-green-500 text-white font-semibold hover:opacity-90 transition-opacity">LINEで相談する</a>
+      <a href="https://lin.ee/9qmgOwt" class="block w-full px-8 py-4 rounded-full border-2 border-dark text-dark font-semibold hover:bg-dark hover:text-primary transition-colors">カットモデル募集はこちら</a>
+      <p class="text-xs text-dark/80">※カットモデルは写真を添付してLINEでお問い合わせ下さい</p>
     </div>
   </section>
 
   <!-- フッター -->
-  <footer class="py-12 bg-dark text-gray-300" data-aos="fade-up">
+  <footer class="bg-gray-800 text-gray-400 py-12" id="contact">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
       <div>
-        <h3 class="text-xl font-semibold mb-2">白詰草</h3>
-        <p>〒000-0000 東京都新宿区〇〇1-2-3<br />営業時間: 10:00 - 20:00<br />定休日: 火曜日</p>
+        <h3 class="text-xl font-semibold text-white mb-2">白詰草 - 髪質改善サロン</h3>
+        <p>〒708-0034 岡山県津山市船頭町104-1<br />営業時間：9:00〜17:00<br />定休日：月曜日 ・第1.3.5日曜日<br />TEL：0868-24-3276</p>
+        <p class="mt-2">LINE・WEB予約は24時間受付中</p>
       </div>
-      <div>
-        <h4 class="font-semibold mb-2">SNS</h4>
-        <div class="flex gap-4">
-          <a href="#" aria-label="Instagram" class="hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20h10a4 4 0 004-4V8a4 4 0 00-4-4H7a4 4 0 00-4 4v8a4 4 0 004 4z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.5 6.5h.01" />
-            </svg>
-          </a>
-        </div>
-      </div>
-      <div class="flex flex-col justify-between">
-        <a href="#reserve" class="self-start px-6 py-3 rounded-full bg-primary text-dark font-semibold hover:opacity-90 transition-opacity">WEB予約</a>
-        <a href="#line" class="self-start mt-4 px-6 py-3 rounded-full border border-primary text-primary font-semibold hover:bg-primary hover:text-dark transition-colors">LINE相談</a>
-        <a href="#troubles" class="self-start mt-6 text-sm underline hover:text-white">カットモデル募集中</a>
-      </div>
+      <img src="gaikann.JPG" alt="サロン外観" class="md:col-span-2 h-56 md:h-64 w-full object-contain rounded-lg bg-[#1a1c2c]/30" />
     </div>
-    <p class="mt-8 text-center text-xs text-gray-500">© 2025 白詰草</p>
+    <p class="mt-8 text-center text-xs">© 2025 白詰草</p>
   </footer>
-
-  <!-- AOS init -->
   <script>
-    AOS.init({
-      once: true,
-      duration: 800,
-      easing: 'ease-out',
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = Array.from(document.querySelectorAll('.light-attract'));
+      if (!sections.length) return;
+      const timers = new Map();
+      let mouse = { x: 0, y: 0 };
+      window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+      const spawnSpark = (section) => {
+        const rect = section.getBoundingClientRect();
+        const spark = document.createElement('span');
+        spark.className = 'spark';
+        const edge = Math.floor(Math.random() * 4);
+        let x = 0, y = 0;
+        if (edge === 0) { x = Math.random() * rect.width; y = -8; }
+        else if (edge === 1) { x = rect.width + 8; y = Math.random() * rect.height; }
+        else if (edge === 2) { x = Math.random() * rect.width; y = rect.height + 8; }
+        else { x = -8; y = Math.random() * rect.height; }
+        spark.style.left = x + 'px';
+        spark.style.top = y + 'px';
+        section.appendChild(spark);
+        const bx = Math.min(1, Math.max(0, (mouse.x - rect.left) / Math.max(1, rect.width)));
+        const by = Math.min(1, Math.max(0, (mouse.y - rect.top) / Math.max(1, rect.height)));
+        const cx = rect.width * (0.48 + (bx - 0.5) * 0.18) + (Math.random() - 0.5) * rect.width * 0.04;
+        const cy = rect.height * (0.46 + (by - 0.5) * 0.18) + (Math.random() - 0.5) * rect.height * 0.04;
+        requestAnimationFrame(() => {
+          spark.style.left = cx + 'px';
+          spark.style.top = cy + 'px';
+          setTimeout(() => {
+            spark.classList.add('fade');
+            setTimeout(() => spark.remove(), 900);
+          }, 1200 + Math.random() * 700);
+        });
+      };
+      const start = (section) => {
+        if (timers.has(section)) return;
+        section.classList.add('lit');
+        const id = setInterval(() => { for (let i = 0; i < 2; i++) spawnSpark(section); }, 1200);
+        timers.set(section, id);
+      };
+      const stop = (section) => {
+        const id = timers.get(section);
+        if (id) { clearInterval(id); timers.delete(section); }
+        section.classList.remove('lit');
+      };
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.25) start(entry.target);
+          else stop(entry.target);
+        });
+      }, { threshold: [0, 0.25, 0.5, 1] });
+      sections.forEach((sec) => io.observe(sec));
+      document.addEventListener('visibilitychange', () => { if (document.hidden) sections.forEach(stop); });
     });
   </script>
 </body>
