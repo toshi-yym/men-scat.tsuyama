@@ -84,13 +84,26 @@
       transition: left 1800ms cubic-bezier(.18,.6,.08,.98), top 1800ms cubic-bezier(.18,.6,.08,.98), opacity 1200ms ease, transform 1200ms ease;
     }
     .spark.fade { opacity: 0; transform: scale(0.6); }
+    /* Scroll reveal animations */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 700ms ease, transform 700ms ease; }
+    .reveal.show { opacity: 1; transform: none; }
+    .reveal-left { transform: translateX(-24px); }
+    .reveal-right { transform: translateX(24px); }
+    .reveal-zoom { transform: scale(0.96); }
+    .reveal-left.show, .reveal-right.show, .reveal-zoom.show { transform: none; }
+    /* Parallax helpers */
+    .parallax { will-change: transform; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1 !important; transform: none !important; }
+      .parallax { transform: none !important; }
+    }
   </style>
 </head>
 <body class="font-sans text-gray-200 bg-gradient-to-b from-[#0d1020] via-[#1a1c2c] to-[#0a0b13]">
   <!-- タイトルエリア -->
   <header class="relative w-full overflow-hidden">
     <!-- メインビジュアル -->
-    <img src="mein.png" alt="AGAタイトルビジュアル" class="w-full h-auto object-cover" />
+    <img src="mein.png" alt="AGAタイトルビジュアル" class="w-full h-auto object-cover parallax" data-parallax-speed="0.15" />
     <div class="relative z-10 max-w-3xl px-4">
             <div class="mt-8 flex flex-col md:flex-row gap-4 justify-center">
         <a href="https://coubic.com/-shirotsumekusa-/1790415/book/course_type" class="px-8 py-3 rounded-full bg-primary text-dark font-semibold hover:opacity-90 transition-opacity">WEB予約はこちら</a>
@@ -106,49 +119,49 @@
       <!-- Desktop layout (unchanged) -->
       <div class="hidden lg:block">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div class="p-8 gold-card">
+          <div class="p-8 gold-card reveal" style="transition-delay: 60ms;">
             <h3 class="text-xl font-semibold mb-4">完全個室</h3>
             <p>予約時間はアナタの貸切り。周りの視線が気にならないプライベート空間。</p>
           </div>
-          <div class="p-8 gold-card">
+          <div class="p-8 gold-card reveal" style="transition-delay: 140ms;">
             <h3 class="text-xl font-semibold mb-4">マンツーマン施術</h3>
             <p>AGAや薄毛の知識が豊富な男性美容師が最初から最後まで1対1で施術。</p>
           </div>
-          <div class="p-8 gold-card">
+          <div class="p-8 gold-card reveal" style="transition-delay: 220ms;">
             <h3 class="text-xl font-semibold mb-4">スタイリングレクチャーあり</h3>
             <p>薄毛が目立ちにくいカットはもちろん、スタイリング方法まで丁寧にレクチャー。</p>
           </div>
         </div>
         <!-- 写真エリア -->
         <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <img src="api1.jpg" alt="完全個室" class="h-56 w-full object-cover rounded-lg" />
-          <img src="api2.png" alt="マンツーマン施術" class="h-56 w-full object-cover rounded-lg" />
-          <img src="api3.jpg" alt="スタイリングレクチャー" class="h-56 w-full object-cover rounded-lg" />
+          <img src="api1.jpg" alt="完全個室" class="h-56 w-full object-cover rounded-lg reveal" style="transition-delay: 80ms;" />
+          <img src="api2.png" alt="マンツーマン施術" class="h-56 w-full object-cover rounded-lg reveal" style="transition-delay: 160ms;" />
+          <img src="api3.jpg" alt="スタイリングレクチャー" class="h-56 w-full object-cover rounded-lg reveal" style="transition-delay: 240ms;" />
         </div>
       </div>
 
       <!-- Mobile/Tablet layout (interleaved order) -->
       <div class="space-y-6 lg:hidden">
         <!-- 完全個室 -->
-        <div class="p-8 gold-card">
+        <div class="p-8 gold-card reveal" style="transition-delay: 60ms;">
           <h3 class="text-xl font-semibold mb-4">完全個室</h3>
           <p>予約時間はアナタの貸切り。周りの視線が気にならないプライベート空間。</p>
         </div>
-        <img src="api1.jpg" alt="完全個室" class="h-56 w-full object-cover rounded-lg" />
+        <img src="api1.jpg" alt="完全個室" class="h-56 w-full object-cover rounded-lg reveal" style="transition-delay: 120ms;" />
 
         <!-- マンツーマン施術 -->
-        <div class="p-8 gold-card">
+        <div class="p-8 gold-card reveal" style="transition-delay: 180ms;">
           <h3 class="text-xl font-semibold mb-4">マンツーマン施術</h3>
           <p>AGAや薄毛の知識が豊富な男性美容師が最初から最後まで1対1で施術。</p>
         </div>
-        <img src="api2.png" alt="マンツーマン施術" class="h-56 w-full object-cover rounded-lg" />
+        <img src="api2.png" alt="マンツーマン施術" class="h-56 w-full object-cover rounded-lg reveal" style="transition-delay: 240ms;" />
 
         <!-- スタイリングレクチャーあり -->
-        <div class="p-8 gold-card">
+        <div class="p-8 gold-card reveal" style="transition-delay: 300ms;">
           <h3 class="text-xl font-semibold mb-4">スタイリングレクチャーあり</h3>
           <p>薄毛が目立ちにくいカットはもちろん、スタイリング方法まで丁寧にレクチャー。</p>
         </div>
-        <img src="api3.jpg" alt="スタイリングレクチャー" class="h-56 w-full object-cover rounded-lg" />
+        <img src="api3.jpg" alt="スタイリングレクチャー" class="h-56 w-full object-cover rounded-lg reveal" style="transition-delay: 360ms;" />
       </div>
     </div>
   </section>
@@ -228,7 +241,7 @@
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">施術例 ビフォーアフター</h2>
       <div class="grid grid-cols-1 gap-8 max-w-3xl mx-auto">
-        <div class="gold-card p-4">
+        <div class="gold-card p-4 reveal-zoom reveal">
           <div class="grid grid-cols-2 gap-4 items-center">
             <div class="text-center">
               <div class="aspect-square w-full">
@@ -255,7 +268,7 @@
       <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">来店からの流れ</h2>
       <div class="space-y-10">
         <!-- Step 1 -->
-        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8 reveal-left reveal">
           <div class="md:col-span-4">
             <div class="text-2xl md:text-3xl font-bold text-primary">① 受付け</div>
           </div>
@@ -264,7 +277,7 @@
           </div>
         </div>
         <!-- Step 2 -->
-        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-start gap-6 gold-card p-6 md:p-8 reveal-right reveal">
           <div class="md:col-span-4">
             <div class="text-2xl md:text-3xl font-bold text-primary">② カウンセリング</div>
           </div>
@@ -316,40 +329,40 @@
   <section class="gold-divider py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a] light-attract" id="menu">
     <div class="max-w-5xl mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">メニュー</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-100">
-        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-100">
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg reveal" style="transition-delay: 80ms;">
           <h3 class="text-lg font-semibold mb-4">カット</h3>
           <p>¥6,600（税込）</p>
         </div>
-        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg reveal" style="transition-delay: 140ms;">
           <h3 class="text-lg font-semibold mb-4">ヘッドスパ（15分）</h3>
           <p>+¥1,650（税込）</p>
         </div>
-        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg reveal" style="transition-delay: 200ms;">
           <h3 class="text-lg font-semibold mb-4">育毛スパ（15分）</h3>
           <p>+¥2,200（税込）</p>
         </div>
-        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg reveal" style="transition-delay: 260ms;">
           <h3 class="text-lg font-semibold mb-4">ヘッドスパ（30分）</h3>
           <p>+¥3,300（税込）</p>
         </div>
-        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg reveal" style="transition-delay: 320ms;">
           <h3 class="text-lg font-semibold mb-4">カラー＆メンズカット</h3>
           <p>¥13,200（税込）</p>
         </div>
-        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg reveal" style="transition-delay: 380ms;">
           <h3 class="text-lg font-semibold mb-4">パーマ＆カット</h3>
           <p>¥17,600（税込）</p>
         </div>
-        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg">
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg reveal" style="transition-delay: 440ms;">
           <h3 class="text-lg font-semibold mb-4">ポイントパーマ＆カット</h3>
           <p>¥14,300〜（税込）</p>
         </div>
-        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg flex items-center justify-center">
+        <div class="bg-[#1f2536] border border-[#c2a86c]/30 p-6 rounded-lg flex items-center justify-center reveal" style="transition-delay: 500ms;">
           <p class="text-sm text-gray-200">※その他のメニューはお問い合わせ下さい。</p>
         </div>
-      </div>
-      <img src="menyu.jpg" alt="メニューイメージ" class="h-52 w-full object-cover rounded-lg mt-12" />
+        </div>
+      <img src="menyu.jpg" alt="メニューイメージ" class="h-52 w-full object-cover rounded-lg mt-12 reveal" style="transition-delay: 560ms;" />
     </div>
   </section>
 
@@ -384,14 +397,13 @@
         <p>〒708-0034 岡山県津山市船頭町104-1<br />営業時間：9:00〜17:00<br />定休日：月曜日 ・第1.3.5日曜日<br />TEL：0868-24-3276</p>
         <p class="mt-2">LINE・WEB予約は24時間受付中</p>
       </div>
-      <img src="gaikann.JPG" alt="サロン外観" class="md:col-span-2 h-56 md:h-64 w-full object-contain rounded-lg bg-[#1a1c2c]/30" />
+      <img src="gaikann.JPG" alt="サロン外観" class="md:col-span-2 h-56 md:h-64 w-full object-contain rounded-lg bg-[#1a1c2c]/30 parallax" data-parallax-speed="0.12" />
     </div>
     <p class="mt-8 text-center text-xs">© 2025 白詰草</p>
   </footer>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const sections = Array.from(document.querySelectorAll('.light-attract'));
-      if (!sections.length) return;
       const timers = new Map();
       let mouse = { x: 0, y: 0 };
       window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
@@ -440,6 +452,40 @@
       }, { threshold: [0, 0.25, 0.5, 1] });
       sections.forEach((sec) => io.observe(sec));
       document.addEventListener('visibilitychange', () => { if (document.hidden) sections.forEach(stop); });
+
+      // Reveal animations
+      const revealEls = Array.from(document.querySelectorAll('.reveal'));
+      if (revealEls.length) {
+        const rio = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('show');
+              rio.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealEls.forEach((el) => rio.observe(el));
+      }
+
+      // Parallax
+      const pxEls = Array.from(document.querySelectorAll('.parallax'));
+      if (pxEls.length) {
+        const speeds = new Map(pxEls.map(el => [el, parseFloat(el.getAttribute('data-parallax-speed') || '0.1')]));
+        const onScroll = () => {
+          const vh = Math.max(1, window.innerHeight);
+          pxEls.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            const center = rect.top + rect.height / 2;
+            const ratio = (center - vh / 2) / vh; // -1..1 付近
+            const dy = -ratio * 100 * (speeds.get(el) || 0.1);
+            el.style.transform = `translate3d(0, ${dy.toFixed(1)}px, 0)`;
+          });
+        };
+        let rafId = 0;
+        const loop = () => { rafId = requestAnimationFrame(() => { onScroll(); loop(); }); };
+        loop();
+        document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(rafId); else loop(); });
+      }
     });
   </script>
 </body>
