@@ -103,24 +103,51 @@
   <section class="gold-divider py-24 bg-gradient-to-b from-[#1a1c2c] via-[#c2a86c]/10 to-[#0e0f1a] text-gray-100 light-attract" id="appeal">
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">白詰草のこだわり</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Desktop layout (unchanged) -->
+      <div class="hidden lg:block">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="p-8 gold-card">
+            <h3 class="text-xl font-semibold mb-4">完全個室</h3>
+            <p>予約時間はアナタの貸切り。周りの視線が気にならないプライベート空間。</p>
+          </div>
+          <div class="p-8 gold-card">
+            <h3 class="text-xl font-semibold mb-4">マンツーマン施術</h3>
+            <p>AGAや薄毛の知識が豊富な男性美容師が最初から最後まで1対1で施術。</p>
+          </div>
+          <div class="p-8 gold-card">
+            <h3 class="text-xl font-semibold mb-4">スタイリングレクチャーあり</h3>
+            <p>薄毛が目立ちにくいカットはもちろん、スタイリング方法まで丁寧にレクチャー。</p>
+          </div>
+        </div>
+        <!-- 写真エリア -->
+        <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <img src="api1.jpg" alt="完全個室" class="h-56 w-full object-cover rounded-lg" />
+          <img src="api2.png" alt="マンツーマン施術" class="h-56 w-full object-cover rounded-lg" />
+          <img src="api3.jpg" alt="スタイリングレクチャー" class="h-56 w-full object-cover rounded-lg" />
+        </div>
+      </div>
+
+      <!-- Mobile/Tablet layout (interleaved order) -->
+      <div class="space-y-6 lg:hidden">
+        <!-- 完全個室 -->
         <div class="p-8 gold-card">
           <h3 class="text-xl font-semibold mb-4">完全個室</h3>
           <p>予約時間はアナタの貸切り。周りの視線が気にならないプライベート空間。</p>
         </div>
+        <img src="api1.jpg" alt="完全個室" class="h-56 w-full object-cover rounded-lg" />
+
+        <!-- マンツーマン施術 -->
         <div class="p-8 gold-card">
           <h3 class="text-xl font-semibold mb-4">マンツーマン施術</h3>
           <p>AGAや薄毛の知識が豊富な男性美容師が最初から最後まで1対1で施術。</p>
         </div>
+        <img src="api2.png" alt="マンツーマン施術" class="h-56 w-full object-cover rounded-lg" />
+
+        <!-- スタイリングレクチャーあり -->
         <div class="p-8 gold-card">
           <h3 class="text-xl font-semibold mb-4">スタイリングレクチャーあり</h3>
           <p>薄毛が目立ちにくいカットはもちろん、スタイリング方法まで丁寧にレクチャー。</p>
         </div>
-      </div>
-      <!-- 写真エリア -->
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <img src="api1.jpg" alt="完全個室" class="h-56 w-full object-cover rounded-lg" />
-        <img src="api2.png" alt="マンツーマン施術" class="h-56 w-full object-cover rounded-lg" />
         <img src="api3.jpg" alt="スタイリングレクチャー" class="h-56 w-full object-cover rounded-lg" />
       </div>
     </div>
@@ -194,6 +221,31 @@
       <p>だから、薄毛で諦めている人は<br />本当に勿体ない事をしているんです！</p>
       <p>今、アナタがコレを読んでいるのも何かのご縁です。</p>
       <p>最初の一歩は勇気がいると思いますが、<br />勇気を出してご来店（ご予約）頂ければ<br />全力でアナタの状態に合う素敵なスタイルにしていきますので<br />是非ご来店お待ちしております！</p>
+    </div>
+  </section>
+  <!-- 施術例 ビフォーアフター -->
+  <section class="gold-divider py-24 bg-[#0f1424] light-attract" id="before-after">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-primary">施術例 ビフォーアフター</h2>
+      <div class="grid grid-cols-1 gap-8 max-w-3xl mx-auto">
+        <div class="gold-card p-4">
+          <div class="grid grid-cols-2 gap-4 items-center">
+            <div class="text-center">
+              <div class="aspect-square w-full">
+                <img src="bi.jpg" alt="施術前" class="w-full h-full object-cover rounded-lg" />
+              </div>
+              <p class="mt-2 text-sm text-gray-300">Before</p>
+            </div>
+            <div class="text-center">
+              <div class="aspect-square w-full">
+                <img src="af.jpg" alt="施術後" class="w-full h-full object-cover rounded-lg" />
+              </div>
+              <p class="mt-2 text-sm text-gray-300">After</p>
+            </div>
+          </div>
+          <p class="mt-4 text-sm text-gray-300">頭頂部の薄さが気になっていたKさんですが、サイドはスッキリさせて頭頂部との差を無くし、ハチ周辺の髪を長めに残し頭頂部に集めるようにスタイリングする事で頭頂部の薄さが気にならなくなりました。Kさんにも「薄く見えない！」と喜んで頂きました。</p>
+        </div>
+      </div>
     </div>
   </section>
 
