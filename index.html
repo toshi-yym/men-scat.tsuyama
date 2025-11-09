@@ -97,6 +97,18 @@
       .reveal { transition: none; opacity: 1 !important; transform: none !important; }
       .parallax { transform: none !important; }
     }
+      /* Hero grow-in animation */
+    @keyframes heroGrowIn {
+      0% { opacity: 0; transform: scale(0.94); }
+      60% { opacity: 1; }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .hero-grow {
+      animation: heroGrowIn 900ms cubic-bezier(.16,.84,.44,1) both;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-grow { animation: none !important; }
+    }
   </style>
 </head>
 <body class="font-sans text-gray-200 bg-gradient-to-b from-[#0d1020] via-[#1a1c2c] to-[#0a0b13]">
@@ -106,12 +118,12 @@
         <div class="w-full py-24 md:py-36 text-center px-4">
   <div class="max-w-4xl mx-auto">
     <h1
-      class="text-3xl md:text-5xl font-bold tracking-tight leading-tight text-white
+      class="text-3xl md:text-5xl font-bold tracking-tight leading-tight text-primary hero-grow
              inline-block relative drop-shadow-[0_1px_6px_rgba(0,0,0,0.25)]
              after:content-[''] after:block after:h-[2px] after:bg-[#c2a86c] after:mx-auto after:mt-4 after:w-16">
       薄毛（AGA）で悩むのはもうやめよう！
     </h1>
-    <p class="mt-5 text-base md:text-xl text-gray-200/90">
+    <p class="mt-5 text-2xl md:text-4xl text-primary hero-grow" style="animation-delay: 120ms;">
       アナタの悩み一緒に解決していきます!!
     </p>
   </div>
@@ -404,7 +416,7 @@
     <div class="max-w-3xl mx-auto px-4 text-center space-y-8">
       <h2 class="text-2xl md:text-3xl font-semibold text-primary">予約・問い合わせ・カットモデル募集</h2>
       <a href="https://coubic.com/-shirotsumekusa-/1790415/book/course_type" class="block w-full px-8 py-4 rounded-full bg-dark text-primary font-semibold hover:opacity-90 transition-opacity">WEB予約はこちら</a>
-      <a href="https://lin.ee/9qmgOwt" class="block w-full px-8 py-4 rounded-full bg-green-500 text-white font-semibold hover:opacity-90 transition-opacity">LINEで相談する</a>
+      <a href="https://lin.ee/9qmgOwt" class="block w-full px-8 py-4 rounded-full bg-green-500 text-primary hero-grow font-semibold hover:opacity-90 transition-opacity">LINEで相談する</a>
       <a href="https://lin.ee/9qmgOwt" class="block w-full px-8 py-4 rounded-full border-2 border-dark text-dark font-semibold hover:bg-dark hover:text-primary transition-colors">カットモデル募集はこちら</a>
       <p class="text-xs text-dark/80">※カットモデルは写真を添付してLINEでお問い合わせ下さい</p>
     </div>
@@ -414,7 +426,7 @@
   <footer class="bg-gray-800 text-gray-400 py-12" id="contact">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
       <div>
-        <h3 class="text-xl font-semibold text-white mb-2">白詰草 - 髪質改善サロン</h3>
+        <h3 class="text-xl font-semibold text-primary hero-grow mb-2">白詰草 - 髪質改善サロン</h3>
         <p>〒708-0034 岡山県津山市船頭町104-1<br />営業時間：9:00〜17:00<br />定休日：月曜日 ・第1.3.5日曜日<br />TEL：0868-24-3276</p>
         <p class="mt-2">LINE・WEB予約は24時間受付中</p>
       </div>
@@ -511,5 +523,6 @@
   </script>
 </body>
 </html>
+
 
 
